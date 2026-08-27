@@ -1,4 +1,4 @@
-# Walrus Memory Support Agent
+# Customer support agent prompt
 
 A customer-support agent prompt whose knowledge lives on **Walrus**, not inside a support platform or a model provider. Every issue the agent resolves becomes a durable, structured memory the company owns — and it stays useful when the model, the platform, or the client changes.
 
