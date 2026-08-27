@@ -1,6 +1,6 @@
-# Customer support agent prompt
+# Customer support agent memory prompt
 
-A customer-support agent prompt whose knowledge lives on **Walrus**, not inside a support platform or a model provider. Every issue the agent resolves becomes a durable, structured memory the company owns — and it stays useful when the model, the platform, or the client changes.
+A customer-support agent memory prompt whose knowledge lives on **Walrus**, not inside a support platform or a model provider. Every issue the agent resolves becomes a durable, structured memory the company owns — and it stays useful when the model, the platform, or the client changes.
 
 The prompt is the product. [`support-bot-prompt.md`](./support-bot-prompt.md) is the whole agent; drop it into any MCP client that exposes the [MemWal](https://github.com/MystenLabs/MemWal) tools, fill in the config block, and point it at your company's Walrus Memory account.
 
