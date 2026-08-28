@@ -4,6 +4,8 @@ A customer-support agent memory prompt whose knowledge lives on **Walrus**, not 
 
 The prompt is the product. [`support-agent-prompt.md`](./support-agent-prompt.md) is the whole agent; drop it into any MCP client that exposes the [MemWal](https://github.com/MystenLabs/MemWal) tools, fill in the config block, and point it at your company's Walrus Memory account.
 
+**▶ Demo:** [Watch on YouTube](https://youtu.be/Ogv5r7-aKMo)
+
 ## In this repo
 
 - [`support-agent-prompt.md`](./support-agent-prompt.md) — the full, copy-pasteable prompt

@@ -11,7 +11,7 @@
 | Network | Mainnet |
 | MemWal package | `0xe7c16fbea0560e7057e2bf7422feaa4fb313749fc69c9e9092fac7a33b81d7f5` |
 | Overview page | one-page visual overview (Claude Artifact — share link on request) |
-| Demo video | _to add_ |
+| Demo video | [youtu.be/Ogv5r7-aKMo](https://youtu.be/Ogv5r7-aKMo) |
 | Issues filed | [MemWal#814](https://github.com/MystenLabs/MemWal/issues/814) · [#815](https://github.com/MystenLabs/MemWal/issues/815) · [#816](https://github.com/MystenLabs/MemWal/issues/816) |
 
 ## What it is
@@ -30,7 +30,7 @@ runs the model through the MemWal tool loop and streams the memory activity to t
 - [x] Agent ID + MemWalAccount + agent wallet recorded (table above)
 - [x] Behavior calibration — 8-point suite, all passing ([evidence/findings.md](evidence/findings.md))
 - [x] Feedback / GitHub issues on MystenLabs/MemWal — [#814](https://github.com/MystenLabs/MemWal/issues/814), [#815](https://github.com/MystenLabs/MemWal/issues/815), [#816](https://github.com/MystenLabs/MemWal/issues/816)
-- [ ] Demo video recorded — script ready; recording once the relayer outage clears (or the fallback cut, which needs no live recall)
+- [x] Demo video recorded — [youtu.be/Ogv5r7-aKMo](https://youtu.be/Ogv5r7-aKMo)
 - [ ] ≥10 blobs on Mainnet — currently **8**; short of ten because a Walrus relayer outage (429 `ip_active_cap` / 503) has blocked further writes. A handful more resolved tickets clears it once the relayer is back.
 
 ## Honest note on the relayer
