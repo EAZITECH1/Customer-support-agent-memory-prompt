@@ -2,7 +2,15 @@
 
 A customer-support agent memory prompt whose knowledge lives on **Walrus**, not inside a support platform or a model provider. Every issue the agent resolves becomes a durable, structured memory the company owns — and it stays useful when the model, the platform, or the client changes.
 
-The prompt is the product. [`support-bot-prompt.md`](./support-bot-prompt.md) is the whole agent; drop it into any MCP client that exposes the [MemWal](https://github.com/MystenLabs/MemWal) tools, fill in the config block, and point it at your company's Walrus Memory account.
+The prompt is the product. [`support-agent-prompt.md`](./support-agent-prompt.md) is the whole agent; drop it into any MCP client that exposes the [MemWal](https://github.com/MystenLabs/MemWal) tools, fill in the config block, and point it at your company's Walrus Memory account.
+
+## In this repo
+
+- [`support-agent-prompt.md`](./support-agent-prompt.md) — the full, copy-pasteable prompt
+- [`submission.md`](./submission.md) — agent ID, MemWalAccount, wallet, blob count, checklist
+- [`evidence/blobs.md`](./evidence/blobs.md) — mainnet blobs the agent wrote, with walruscan links
+- [`evidence/findings.md`](./evidence/findings.md) — measured relayer findings and how each shaped the prompt
+- [`feedback/`](./feedback) — the three MemWal issues filed while building this, in full
 
 ## The idea
 
@@ -57,7 +65,7 @@ The reference deployment has written its memories to Walrus on Sui **mainnet**. 
 ## Using it
 
 1. Give your MCP client the MemWal tools and sign the agent's wallet in (`memwal_login`).
-2. Copy `support-bot-prompt.md` as the system prompt and fill in the `## Company config` block — company, tiers, product areas, and your Walrus Memory account.
+2. Copy `support-agent-prompt.md` as the system prompt and fill in the `## Company config` block — company, tiers, product areas, and your Walrus Memory account.
 3. Wire the agent into your support surface. On the first run it health-checks memory and, if you list any `knowledge_sources`, ingests them once via `memwal_analyze`.
 
 The prompt assumes nothing about the host beyond the MemWal tools, so it runs the same in Claude Code, Cursor, or your own agent loop.

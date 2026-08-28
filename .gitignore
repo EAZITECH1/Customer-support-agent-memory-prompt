@@ -1,0 +1,5 @@
+.env
+.env.*
+.memwal-home/
+node_modules/
+.DS_Store
