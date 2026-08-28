@@ -1,5 +1,15 @@
+# secrets — never commit
 .env
 .env.*
+!.env.example
+
+# isolated support-wallet HOME (materialized from .env at boot; holds the delegate key)
 .memwal-home/
+
+# local session plumbing (durable memory lives on Walrus, not here)
+data/
+
+# deps / os
 node_modules/
 .DS_Store
+npm-debug.log*

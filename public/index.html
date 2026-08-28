@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>EAZITΞCH — Support</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="frame">
+      <!-- Top bar — echoes the site's wordmark + "AVAILABLE FOR COLLABS" -->
+      <header class="topbar">
+        <div class="brand">EAZIT<span class="xi">Ξ</span>CH</div>
+        <div class="status">
+          <span class="dot" id="statusDot"></span>
+          <span id="statusText">CONNECTING…</span>
+        </div>
+      </header>
+
+      <!-- Numbered editorial label strip -->
+      <div class="eyebrow">
+        <span>00 · CUSTOMER SUPPORT</span>
+        <span class="sep">/</span>
+        <span>MEMORY ON WALRUS</span>
+        <span class="sep">/</span>
+        <span id="nsLabel">NS · support</span>
+      </div>
+
+      <!-- Serif display headline, like the hero -->
+      <h1 class="display">How can we<br />help<span class="period">.</span></h1>
+
+      <!-- Chat transcript -->
+      <main class="thread" id="thread" aria-live="polite"></main>
+
+      <!-- Composer -->
+      <form class="composer" id="composer" autocomplete="off">
+        <input
+          id="input"
+          class="input"
+          type="text"
+          placeholder="Describe your issue…"
+          aria-label="Your message"
+        />
+        <button class="send" id="send" type="submit">
+          <span class="send-dot"></span>SEND
+        </button>
+      </form>
+
+      <footer class="foot">
+        <button class="reset" id="reset" type="button">↺ new session</button>
+        <span class="foot-note">resolved issues are remembered on Walrus, not this machine</span>
+      </footer>
+    </div>
+
+    <script src="/app.js" type="module"></script>
+  </body>
+</html>

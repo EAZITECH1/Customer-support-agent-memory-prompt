@@ -20,6 +20,10 @@ Most support bots are amnesiac. They answer one conversation and forget it; the 
 - **Remember after resolving.** A closed ticket becomes a structured record — symptom, what was tried, what was *ruled out*, the fix, root cause, confidence — so the next agent (on any provider) can reuse it cold.
 - **Portable and owned.** The knowledge is keyed to the company's Walrus Memory account. Switch from Claude to Codex, or from one support platform to another, and the history transfers as a permission grant. Nothing important lives only in a provider's private memory.
 
+## How it uses Walrus Memory
+
+On every customer message the model can call the MemWal tools — `memwal_recall`, `memwal_remember`, `memwal_remember_bulk`, `memwal_analyze`, `memwal_restore` — plus a health check. The backend runs each call against the company's Walrus Memory account through the MemWal MCP server, feeds the result back to the model, and loops until it has an answer. A resolved ticket is written as an encrypted blob on Walrus (via the MemWal relayer); a later session recalls it by semantic search. Because the memory is keyed to a Sui-owned account and not the model or the chat platform, it stays with the company across providers and clients.
+
 ## How the memory is organized
 
 Four namespace families, treated as security boundaries by tier:
@@ -62,13 +66,37 @@ The reference deployment has written its memories to Walrus on Sui **mainnet**. 
   - [`vPVfOyZZ…`](https://walruscan.com/mainnet/blob/vPVfOyZZd8U7MUW1IxX6aPBSxRdcBeLCwcbbz7CjUFA) — a `product-intel` pattern
   - [`7Yxc8cjq…`](https://walruscan.com/mainnet/blob/7Yxc8cjqpxmjS-GrVsFqFfPDNXo_mkazOLz451gASPI) — an `open-tickets` escalation
 
-## Using it
+## Quick start
 
-1. Give your MCP client the MemWal tools and sign the agent's wallet in (`memwal_login`).
-2. Copy `support-agent-prompt.md` as the system prompt and fill in the `## Company config` block — company, tiers, product areas, and your Walrus Memory account.
-3. Wire the agent into your support surface. On the first run it health-checks memory and, if you list any `knowledge_sources`, ingests them once via `memwal_analyze`.
+Run the reference harness locally (a small Node/Express app that wraps the prompt in the MemWal tool loop). Needs **Node 18+**.
 
-The prompt assumes nothing about the host beyond the MemWal tools, so it runs the same in Claude Code, Cursor, or your own agent loop.
+**macOS / Linux**
+```bash
+git clone https://github.com/EAZITECH1/Customer-support-agent-memory-prompt
+cd Customer-support-agent-memory-prompt
+npm install
+cp .env.example .env          # then set LLM_BASE_URL, LLM_API_KEY, LLM_MODEL
+npm run memwal:login          # opens a browser — sign the agent's wallet in
+npm start                     # → http://localhost:8787
+```
+
+**Windows (PowerShell)**
+```powershell
+git clone https://github.com/EAZITECH1/Customer-support-agent-memory-prompt
+cd Customer-support-agent-memory-prompt
+npm install
+copy .env.example .env         # then edit .env: LLM_BASE_URL, LLM_API_KEY, LLM_MODEL
+npm run memwal:login           # opens a browser — sign the agent's wallet in
+npm start                      # → http://localhost:8787
+```
+
+Notes:
+- **Model** is any OpenAI-compatible endpoint (OpenRouter, Ollama, Groq, LM Studio…) — set the three `LLM_*` vars in `.env`.
+- `npm run memwal:login` gives the agent **its own Walrus wallet**, isolated from your personal `~/.memwal` login, with the secret kept only in `.env`.
+- Fill the `## Company config` block in [`support-agent-prompt.md`](./support-agent-prompt.md) — the app re-reads it on every message, so edits take effect live.
+- Prove memory works without the UI: `npm run memwal:smoke` writes one memory to Walrus and reads it back.
+
+**Prompt only, no server** — to use just the agent in your own client: load `support-agent-prompt.md` as the system prompt in any MCP client that exposes the MemWal tools (Claude Code, Cursor, Codex), fill the config block, and point it at your Walrus Memory account.
 
 ## Feedback
 

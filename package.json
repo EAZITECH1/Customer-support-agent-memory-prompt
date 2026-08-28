@@ -1,0 +1,23 @@
+{
+  "name": "customer-support-agent-memory",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Localhost reference harness for the memory-first support agent. Runs an OpenAI-compatible model through the MemWal (Walrus Memory) tool loop.",
+  "scripts": {
+    "start": "node server/index.js",
+    "dev": "node --watch server/index.js",
+    "memwal:login": "node server/memwal-login.js",
+    "memwal:capture": "node server/memwal-capture.js",
+    "memwal:smoke": "node server/smoke-memwal.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.29.0",
+    "@mysten-incubation/memwal-mcp": "0.0.7",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}
