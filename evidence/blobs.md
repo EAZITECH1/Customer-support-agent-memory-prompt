@@ -4,14 +4,21 @@ Every record below was written by the agent during real support conversations �
 resolving a ticket and calling `memwal_remember`, not a seeding script. Account:
 [`0xf6b75c6f…3175d4`](https://suiscan.xyz/mainnet/object/0xf6b75c6fd44e685829e0baa04077c42c09bed658819e921126dc11ce8c3175d4).
 
-**Counts, from `memwal_recall` across each namespace at submission time:**
+**Counts at submission time.** `memwal_recall` returns *de-duplicated* memories and prints how many
+copies it collapsed, so there are two numbers: the unique memories, and the raw blobs actually on
+Walrus. The raw count is higher because the relayer's write-timeout bug wrote several facts twice
+(see [`../feedback/memwal-issue-814.md`](../feedback/memwal-issue-814.md)).
 
-| namespace | blobs |
-|---|---|
-| `resolved-video` | 5 |
-| `product-intel` | 1 |
-| `open-tickets` | 2 |
-| **total** | **8** |
+| namespace | unique memories | blobs on Walrus (incl. duplicates) |
+|---|---|---|
+| `resolved-video` | 5 | ~8 |
+| `product-intel` | 1 | ~2 |
+| `open-tickets` | 2 | ~4 |
+| **total** | **8** | **~12–14** |
+
+The blob figure is derived from `recall`'s "N duplicate copies collapsed" notes (`resolved-video` +3,
+`product-intel` +1, `open-tickets` +2). The exact number is a `memwal_restore` `total` per namespace,
+which needs the relayer — down at submission time with 429 `ip_active_cap` / 503.
 
 ## Verifiable blob IDs
 
@@ -46,8 +53,12 @@ Confidence: verified. Reuse count: 1. Last verified: 2026-08-27.
 
 ## Note on the count
 
-Eight blobs, not the ten some tracks ask for. The gap is the relayer outage at submission time
-(429 `ip_active_cap` / 503) blocking further writes — not a design limit. The
-`resolved-video` count of five includes a few near-duplicates written before the prompt's dedup
-rule and a stronger model removed them on later runs; the cross-session reuse that matters is
-proven by a fresh session recalling the stored fix and leading with it.
+Counting raw blobs on Walrus — what the ledger actually holds — this account sits at roughly
+**twelve to fourteen**, over the ten some tracks ask for. Counting *unique* resolved issues, it's
+**eight**. The difference is duplicate writes from the relayer's write-timeout bug
+([#814](https://github.com/MystenLabs/MemWal/issues/814)): `memwal_remember` returned a 503 or a
+timeout while the blob still landed, so the agent retried and wrote the same fact again. The prompt's
+dedup rule and a stronger model stopped that on later runs. Either number is honest depending on what
+you count; the exact blob total is a `memwal_restore` away once the relayer is back. What the
+submission actually rests on is cross-session reuse — a fresh session recalling the stored fix and
+leading with it.

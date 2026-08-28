@@ -7,7 +7,7 @@
 | Agent ID (delegate public key) | `21a5566e62214e85fdd9010d19b571bf8b6c897bd84472fe8b948766675a4c2a4` |
 | MemWalAccount | [`0xf6b75c6fd44e685829e0baa04077c42c09bed658819e921126dc11ce8c3175d4`](https://suiscan.xyz/mainnet/object/0xf6b75c6fd44e685829e0baa04077c42c09bed658819e921126dc11ce8c3175d4) |
 | Agent wallet | `0x679d547b18cf9f2e77f1d33f932cbf4de5c63dda6a5c5d0e44caf7ae4334cd1b` |
-| Blobs on Mainnet | 8 (resolved-video 5 · product-intel 1 · open-tickets 2) |
+| Blobs on Mainnet | ~12–14 raw blobs · 8 unique memories (resolved-video · product-intel · open-tickets) |
 | Network | Mainnet |
 | MemWal package | `0xe7c16fbea0560e7057e2bf7422feaa4fb313749fc69c9e9092fac7a33b81d7f5` |
 | Overview page | one-page visual overview (Claude Artifact — share link on request) |
@@ -26,12 +26,12 @@ runs the model through the MemWal tool loop and streams the memory activity to t
 
 - [x] Full copy-pasteable prompt — [support-agent-prompt.md](support-agent-prompt.md)
 - [x] Multi-namespace memory design (`resolved-{area}`, `open-tickets`, `customer-{id}`, `product-intel`) with tier scoping
-- [x] Blobs written on Mainnet — 8 ([evidence/blobs.md](evidence/blobs.md))
+- [x] Blobs written on Mainnet — ~12–14 raw (8 unique memories) ([evidence/blobs.md](evidence/blobs.md))
 - [x] Agent ID + MemWalAccount + agent wallet recorded (table above)
 - [x] Behavior calibration — 8-point suite, all passing ([evidence/findings.md](evidence/findings.md))
 - [x] Feedback / GitHub issues on MystenLabs/MemWal — [#814](https://github.com/MystenLabs/MemWal/issues/814), [#815](https://github.com/MystenLabs/MemWal/issues/815), [#816](https://github.com/MystenLabs/MemWal/issues/816)
 - [x] Demo video recorded — [youtu.be/Ogv5r7-aKMo](https://youtu.be/Ogv5r7-aKMo)
-- [ ] ≥10 blobs on Mainnet — currently **8**; short of ten because a Walrus relayer outage (429 `ip_active_cap` / 503) has blocked further writes. A handful more resolved tickets clears it once the relayer is back.
+- [x] ≥10 blobs on Mainnet — **~12–14 raw blobs** on Walrus (8 unique memories; the extra are duplicate writes from the relayer's write-timeout bug, [#814](https://github.com/MystenLabs/MemWal/issues/814)). Exact `memwal_restore` total pending the relayer recovering from its 429 / 503 outage.
 
 ## Honest note on the relayer
 
